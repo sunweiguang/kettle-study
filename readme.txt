@@ -1,16 +1,8 @@
-Git is a version control system.
-Git is free software.
+数据库ETL工具KETTLE的使用，如何通过KETTLE进行数据同步
 
-wow test push command\\]
-
-
-this is the file download from github
+☆ 根据时间戳来同步数据
 
 
+☆ 根据数据源与目标数据库进行比对
 
-Creating a new branch is quick.
- 
- 
-this line was added by master branch
- 
- 
+详细的内容需要将转换的文件导入到excel中查看
