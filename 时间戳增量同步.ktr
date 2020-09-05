@@ -538,11 +538,11 @@
       <schema_name />
     </partitioning>
     <connection>本机sqlserver-source</connection>
-    <sql>SELECT
+    <sql> SELECT
   ID
-, updateTime
-FROM dbo.Zeng
-WHERE updateTime > ?</sql>
+ , updateTime
+ FROM dbo.Zeng 
+ WHERE updateTime > ? OR id >? </sql>
     <limit>0</limit>
     <lookup>查询出目标库的最新更新时间</lookup>
     <execute_each_row>Y</execute_each_row>
@@ -556,41 +556,7 @@ WHERE updateTime > ?</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>查询出目标库的最新更新时间</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>本机sqlserver-target</connection>
-    <sql>SELECT
- ISNULL(max(updateTime),'1990-01-01') as updateTime
-FROM dbo.Zeng
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>160</xloc>
+      <xloc>464</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -637,7 +603,42 @@ FROM dbo.Zeng
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
+      <xloc>784</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>查询出目标库的最新更新时间</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>本机sqlserver-target</connection>
+    <sql>SELECT
+ ISNULL(max(updateTime),'1990-01-01') as updateTime,
+ ISNULL(max(id),0) as id 
+FROM Zeng
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
